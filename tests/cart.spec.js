@@ -19,4 +19,4 @@ test('validate cart with added product', async ({ page }) => {
   await cartPage.validatePrice('$29.99');
   await cartPage.validateQuantity('1');
 
-});
+}); 
