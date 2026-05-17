@@ -1,5 +1,7 @@
 # QA Automation Portfolio - Playwright
 
+![Playwright Tests](https://github.com/onlihernan/qa-automation-playwright-portfolio/actions/workflows/playwright.yml/badge.svg)
+
 ## 📌 Project Overview
 End-to-end test automation framework built with Playwright using Page Object Model and data-driven testing.
 
@@ -27,3 +29,5 @@ End-to-end test automation framework built with Playwright using Page Object Mod
 ## ▶️ Run Tests
 ```bash
 npx playwright test
+npx playwright show-report
+```
