@@ -5,134 +5,134 @@
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green?logo=node.js)
 ![Playwright](https://img.shields.io/badge/Playwright-latest-blueviolet?logo=playwright)
 
-Framework de automatización E2E construido con **Playwright + JavaScript**, aplicando **Page Object Model**, **data-driven testing** y **CI/CD con GitHub Actions**.
+End-to-end automation framework built with **Playwright + JavaScript**, applying **Page Object Model**, **data-driven testing**, and **CI/CD with GitHub Actions**.
 
-Proyecto de portfolio orientado a rol **QA Automation JR**, testeando la aplicación [SauceDemo](https://www.saucedemo.com).
+Portfolio project targeting a **Junior QA Automation** role, testing the [SauceDemo](https://www.saucedemo.com) application.
 
 ---
 
-## 📂 Estructura del proyecto
+## 📂 Project Structure
 
 ```
 qa-automation-playwright-portfolio/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml       # Pipeline CI/CD
+│       └── playwright.yml       # CI/CD pipeline
 ├── data/
-│   ├── loginData.js             # Datos de prueba para login
-│   ├── productData.js           # Datos de productos
-│   └── userData.js              # Datos de usuarios para checkout
+│   ├── loginData.js             # Login test data
+│   ├── productData.js           # Product data
+│   └── userData.js              # User data for checkout
 ├── pages/
 │   ├── loginPage.js             # Page Object: Login
-│   ├── inventoryPage.js         # Page Object: Inventario/Productos
-│   ├── cartPage.js              # Page Object: Carrito
+│   ├── inventoryPage.js         # Page Object: Inventory
+│   ├── cartPage.js              # Page Object: Cart
 │   └── checkoutPage.js          # Page Object: Checkout
 ├── tests/
-│   ├── login.spec.js            # Tests de autenticación
-│   ├── cart.spec.js             # Tests de carrito
-│   └── checkout.spec.js         # Tests de flujo E2E de compra
+│   ├── login.spec.js            # Authentication tests
+│   ├── cart.spec.js             # Cart tests
+│   └── checkout.spec.js         # E2E purchase flow tests
 ├── playwright.config.js
 └── package.json
 ```
 
 ---
 
-## 🧪 Cobertura de tests
+## 🧪 Test Coverage
 
-### Login (`login.spec.js`) — 3 casos
-| Test | Tipo | Resultado esperado |
-|------|------|--------------------|
-| Login exitoso con credenciales válidas | Happy path | Redirige al inventario |
-| Login con password incorrecto | Negativo | Muestra mensaje de error |
-| Login con usuario incorrecto | Negativo | Muestra mensaje de error |
+### Login (`login.spec.js`) — 3 cases
+| Test | Type | Expected result |
+|------|------|-----------------|
+| Successful login with valid credentials | Happy path | Redirects to inventory |
+| Login with wrong password | Negative | Displays error message |
+| Login with wrong username | Negative | Displays error message |
 
-### Carrito (`cart.spec.js`) — 1 caso
-| Test | Tipo | Resultado esperado |
-|------|------|--------------------|
-| Validar producto agregado al carrito | Funcional | Nombre, precio y cantidad correctos |
+### Cart (`cart.spec.js`) — 1 case
+| Test | Type | Expected result |
+|------|------|-----------------|
+| Validate product added to cart | Functional | Correct name, price and quantity |
 
-### Checkout (`checkout.spec.js`) — 2 casos (data-driven)
-| Test | Tipo | Resultado esperado |
-|------|------|--------------------|
-| Flujo E2E de compra — Juan Perez | E2E | Compra completada exitosamente |
-| Flujo E2E de compra — Ana Gomez | E2E | Compra completada exitosamente |
+### Checkout (`checkout.spec.js`) — 2 cases (data-driven)
+| Test | Type | Expected result |
+|------|------|-----------------|
+| E2E purchase flow — Juan Perez | E2E | Purchase completed successfully |
+| E2E purchase flow — Ana Gomez | E2E | Purchase completed successfully |
 
-**Total: 6 tests automatizados** cubriendo login, carrito y flujo completo de compra.
+**Total: 6 automated tests** covering login, cart and full purchase flow.
 
 ---
 
-## 🏗️ Decisiones técnicas
+## 🏗️ Technical Decisions
 
 ### Page Object Model (POM)
-Cada pantalla de la aplicación tiene su propia clase en `/pages`. Esto separa la lógica de navegación/interacción de los tests, haciendo el código reutilizable y fácil de mantener. Si cambia un selector, se actualiza en un solo lugar.
+Each screen has its own class under `/pages`, separating navigation and interaction logic from the tests. This makes the code reusable and easy to maintain — if a selector changes, it's updated in one place.
 
 ### Data-Driven Testing
-Los datos de prueba viven en `/data`, separados de los tests. El test de checkout itera sobre múltiples usuarios con `forEach`, ejecutando el mismo flujo con datos distintos sin duplicar código.
+Test data lives in `/data`, decoupled from the tests. The checkout test iterates over multiple users with `forEach`, running the same flow with different inputs without duplicating code.
 
-### Selectores — criterio profesional
-Se priorizaron selectores robustos siguiendo este orden:
-1. **Roles y accesibilidad** — `getByRole('button', { name: 'Add to cart' })`
-2. **IDs únicos** — `#user-name`, `#login-button`, `#checkout`
-3. **CSS estables y semánticos** — `.inventory_item`, `.complete-header`
+### Selectors — professional criteria
+Selectors were chosen following this priority order:
+1. **Role and accessibility** — `getByRole('button', { name: 'Add to cart' })`
+2. **Unique IDs** — `#user-name`, `#login-button`, `#checkout`
+3. **Stable semantic CSS** — `.inventory_item`, `.complete-header`
 
-Se evitaron XPath y selectores frágiles basados en posición o estructura del DOM.
+XPath and fragile position-based selectors were avoided.
 
-### CI/CD con GitHub Actions
-Los tests corren automáticamente en cada `push` y `pull request` a `main`. El pipeline instala dependencias, instala los browsers de Playwright y ejecuta la suite completa. El badge en este README refleja el estado en tiempo real.
+### CI/CD with GitHub Actions
+Tests run automatically on every `push` and `pull request` to `main`. The pipeline installs dependencies, installs Playwright browsers, and runs the full test suite. The badge at the top of this README reflects the real-time pipeline status.
 
 ---
 
-## ▶️ Cómo ejecutar localmente
+## ▶️ Running Locally
 
-**Requisitos:** Node.js 18+
+**Requirements:** Node.js 18+
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/onlihernan/qa-automation-playwright-portfolio.git
 cd qa-automation-playwright-portfolio
 
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Instalar browsers de Playwright
+# Install Playwright browsers
 npx playwright install
 
-# Ejecutar todos los tests
+# Run all tests
 npx playwright test
 
-# Ejecutar en modo UI (visual)
+# Run in UI mode
 npx playwright test --ui
 
-# Ver reporte HTML
+# View HTML report
 npx playwright show-report
 ```
 
 ---
 
-## 🔧 Stack tecnológico
+## 🔧 Tech Stack
 
-| Herramienta | Uso |
-|-------------|-----|
-| [Playwright](https://playwright.dev/) | Framework de automatización E2E |
-| JavaScript (ES6+) | Lenguaje de implementación |
+| Tool | Purpose |
+|------|---------|
+| [Playwright](https://playwright.dev/) | E2E automation framework |
+| JavaScript (ES6+) | Implementation language |
 | Node.js | Runtime |
 | GitHub Actions | CI/CD pipeline |
-| SauceDemo | Aplicación bajo prueba |
+| SauceDemo | Application under test |
 
 ---
 
-## 👤 Sobre este proyecto
+## 👤 About This Project
 
-Portfolio personal de automatización QA desarrollado como parte de un proceso de formación orientado a rol **QA Automation JR**.
+Personal QA automation portfolio developed as part of a training path targeting a **Junior QA Automation** role.
 
-Cubre los pilares de la automatización moderna: estructura escalable con POM, separación de datos de prueba, selectores robustos y pipeline de integración continua.
+Covers the pillars of modern automation: scalable POM structure, separated test data, robust selectors, and a continuous integration pipeline.
 
-**Próximos pasos planeados:**
-- [ ] API Testing con Playwright (`/api-tests`)
-- [ ] Fixtures para manejo de autenticación compartida
-- [ ] Mocking de respuestas de API
-- [ ] Ampliar cobertura de casos negativos
+**Planned next steps:**
+- [ ] API Testing with Playwright (`/api-tests`)
+- [ ] Fixtures for shared authentication state
+- [ ] API response mocking
+- [ ] Expanded negative test coverage
 
 ---
 
-*Aplicación bajo prueba: [SauceDemo](https://www.saucedemo.com) — entorno de práctica para automatización QA.*
+*Application under test: [SauceDemo](https://www.saucedemo.com) — practice environment for QA automation.*
