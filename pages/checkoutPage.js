@@ -1,10 +1,9 @@
+const { BasePage } = require('./basePage');
 const { expect } = require('@playwright/test');
 
-class CheckoutPage {
-
+class CheckoutPage extends BasePage {
   constructor(page) {
-    this.page = page;
-
+    super(page);
     this.firstName = '#first-name';
     this.lastName = '#last-name';
     this.postalCode = '#postal-code';
@@ -31,7 +30,6 @@ class CheckoutPage {
   async validateSuccessfulPurchase() {
     await expect(this.page.locator(this.successMessage)).toBeVisible();
   }
-
 }
 
 module.exports = { CheckoutPage };
