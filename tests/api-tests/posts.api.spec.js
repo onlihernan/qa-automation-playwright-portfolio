@@ -56,4 +56,42 @@ test.describe('Posts API', () => {
     expect(response.status()).toBe(404);
   });
 
+  test('PUT /posts/1 - should update a post', async () => {
+    const response = await apiContext.put('/posts/1', {
+      data: {
+        id: 1,
+        title: 'Updated Title',
+        body: 'Updated body content',
+        userId: 1
+      }
+    });
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+    expect(body.id).toBe(1);
+    expect(body.title).toBe('Updated Title');
+  });
+
+  test('PATCH /posts/1 - should partially update a post', async () => {
+    const response = await apiContext.patch('/posts/1', {
+      data: {
+        title: 'Patched Title'
+      }
+    });
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+    expect(body.title).toBe('Patched Title');
+  });
+
+  test('DELETE /posts/1 - should delete a post', async () => {
+    const response = await apiContext.delete('/posts/1');
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+    expect(body).toEqual({});
+  });
 });
