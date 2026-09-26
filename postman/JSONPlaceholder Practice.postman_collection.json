@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "50ba4abe-e6bd-4891-804a-3a6e2e3c92d7",
+		"name": "JSONPlaceholder Practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26674904"
+	},
+	"item": [
+		{
+			"name": "GET post by id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "First post practice",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - Status code",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
